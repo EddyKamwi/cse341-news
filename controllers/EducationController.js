@@ -16,6 +16,7 @@ const show = async (req, res) => {
   } else {
     res.status(200).json(single_education);
   }
+  res.status(500).json("Server Error");
 };
 
 const create = async (req, res) => {
