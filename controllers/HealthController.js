@@ -1,4 +1,5 @@
 const health = require("../Models/Health");
+const { validationResult } = require("express-validator");
 
 const index = async (req, res) => {
   const list = await health.findAll();
@@ -23,11 +24,18 @@ const show = async (req, res) => {
 };
 
 const create = async (req, res) => {
-  const newhealth = req.body;
-  await health
-    .create(newhealth)
-    .then(() => res.status(200).json("Post created successfully"))
-    .catch(() => res.status(500).json("Server Error"));
+  try {
+    const err = validationResult(req);
+    if (!err.isEmpty()) {
+      return res.status(400).json({ status: "failed", errors: err.array() });
+    }
+    const newhealth = req.body;
+    await health
+      .create(newhealth)
+      .then(() => res.status(200).json("Post created successfully"));
+  } catch {
+    res.status(500).json("Server Error");
+  }
 };
 
 const destroy = async (req, res) => {
@@ -45,6 +53,10 @@ const destroy = async (req, res) => {
 
 const update = async (req, res) => {
   try {
+    const err = validationResult(req);
+    if (!err.isEmpty()) {
+      return res.status(400).json({ status: "failed", errors: err.array() });
+    }
     const num = await health.update(req.params.id, req.body);
     if (num === 1) {
       res.status(200).json("Post updated successfully");

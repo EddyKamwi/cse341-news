@@ -1,11 +1,16 @@
 const education = require("../Models/Education");
+const { validationResult } = require("express-validator");
 
 const index = async (req, res) => {
-  const list = await education.findAll();
-  if (list === null) {
-    res.status(404).json("Post not found");
-  } else {
-    res.status(200).json(list);
+  try {
+    const list = await education.findAll();
+    if (list === null) {
+      res.status(404).json("Post not found");
+    } else {
+      res.status(200).json(list);
+    }
+  } catch {
+    res.status(500).json("Server Error");
   }
 };
 
@@ -23,11 +28,18 @@ const show = async (req, res) => {
 };
 
 const create = async (req, res) => {
-  const neweducation = req.body;
-  await education
-    .create(neweducation)
-    .then(() => res.status(200).json("Post created successfully"))
-    .catch(() => res.status(500).json("Server Error"));
+  try {
+    const err = validationResult(req);
+    if (!err.isEmpty()) {
+      return res.status(400).json({ status: "failed", errors: err.array() });
+    }
+    const neweducation = req.body;
+    await education
+      .create(neweducation)
+      .then(() => res.status(200).json("Post created successfully"));
+  } catch {
+    res.status(500).json("Server Error");
+  }
 };
 
 const destroy = async (req, res) => {
@@ -45,6 +57,10 @@ const destroy = async (req, res) => {
 
 const update = async (req, res) => {
   try {
+    const err = validationResult(req);
+    if (!err.isEmpty()) {
+      return res.status(400).json({ status: "failed", errors: err.array() });
+    }
     const num = await education.update(req.params.id, req.body);
     if (num === 1) {
       res.status(200).json("Post updated successfully");

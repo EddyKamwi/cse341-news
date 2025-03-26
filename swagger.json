@@ -6,7 +6,9 @@
       "version": "1.0.0",
       "description": "This API interacts with a MongoDB database and two collection of Education and Health."
     },
-    "servers": [{ "url": "https://cse341-news.onrender.com/" }],
+    "servers": [
+      { "url": "http://localhost:8080" }
+    ],
     "tags": [
       {
         "name": "Education",
