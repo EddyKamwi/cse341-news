@@ -3,7 +3,7 @@ const EducationController = require("../controllers/EducationController");
 const HealthController = require("../controllers/HealthController");
 // READ
 routes.get("/education", EducationController.index);
-routes.get("/education:id", EducationController.show);
+routes.get("/education/:id", EducationController.show);
 
 routes.get("/health", HealthController.index);
 routes.get("/health/:id", HealthController.show);
