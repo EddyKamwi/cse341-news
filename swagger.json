@@ -1,0 +1,404 @@
+{
+  "definition": {
+    "openapi": "3.1.0",
+    "info": {
+      "title": "Education and Health News API",
+      "version": "1.0.0",
+      "description": "This API interacts with a MongoDB database and two collection of Education and Health."
+    },
+    "servers": [{ "url": "http://localhost:8080" }],
+    "tags": [
+      {
+        "name": "Education",
+        "description": "Education news post management API"
+      },
+      {
+        "name": "Health",
+        "description": "Health news post management API"
+      }
+    ],
+    "paths": {
+      "/education": {
+        "post": {
+          "summary": "Create a new Education Post",
+          "tags": ["Education"],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Education"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Post created successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Education"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Server error"
+            }
+          }
+        },
+        "get": {
+          "summary": "Get all Education Posts",
+          "tags": ["Education"],
+          "responses": {
+            "200": {
+              "description": "List of all post",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Education"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/education/{id}": {
+        "put": {
+          "summary": "Update post by ID",
+          "tags": ["Education"],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "schema": {
+                "type": "string"
+              },
+              "required": true,
+              "description": "Education post ID"
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Education"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Post updated successfully",
+              "content": {
+                "application/json": {
+                  "$ref": "#/components/schemas/Education"
+                }
+              }
+            },
+            "404": {
+              "description": "Post not found"
+            },
+            "500": {
+              "description": "Server error"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete an Education post by ID",
+          "tags": ["Education"],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "schema": {
+                "type": "string"
+              },
+              "required": true,
+              "description": "Education post ID"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Post deleted successfully"
+            },
+            "404": {
+              "description": "Post not found"
+            },
+            "500": {
+              "description": "Server error"
+            }
+          }
+        },
+        "get": {
+          "summary": "Get Education post by ID",
+          "tags": ["Education"],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "schema": {
+                "type": "string"
+              },
+              "required": true,
+              "description": "Education post ID"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Post details",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Education"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Post not found"
+            }
+          }
+        }
+      },
+      "/health": {
+        "post": {
+          "summary": "Create a new Health post",
+          "tags": ["Health"],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Post created successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Health"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Server error"
+            }
+          }
+        },
+        "get": {
+          "summary": "Get all Health Posts",
+          "tags": ["Health"],
+          "responses": {
+            "200": {
+              "description": "List of all post",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Health"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/health/{id}": {
+        "put": {
+          "summary": "Update post by ID",
+          "tags": ["Health"],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "schema": {
+                "type": "string"
+              },
+              "required": true,
+              "description": "Health post ID"
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Post created successfully",
+              "content": {
+                "application/json": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            },
+            "404": {
+              "description": "Post not found"
+            },
+            "500": {
+              "description": "Server error"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete a Health post by ID",
+          "tags": ["Health"],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "schema": {
+                "type": "string"
+              },
+              "required": true,
+              "description": "Health post ID"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Post deleted successfully"
+            },
+            "404": {
+              "description": "Post not found"
+            },
+            "500": {
+              "description": "Server error"
+            }
+          }
+        },
+        "get": {
+          "summary": "Get Health post by ID",
+          "tags": ["Health"],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "schema": {
+                "type": "string"
+              },
+              "required": true,
+              "description": "Health post ID"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Post details",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Health"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Post not found"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Education": {
+          "type": "object",
+          "required": [
+            "firstName",
+            "lastName",
+            "email",
+            "favoriteColor",
+            "birthday"
+          ],
+          "properties": {
+            "firstName": {
+              "type": "string",
+              "description": "Contact's first name"
+            },
+            "lastName": {
+              "type": "string",
+              "description": "Contact's last name"
+            },
+            "email": {
+              "type": "string",
+              "description": "Contact's email address"
+            },
+            "favoriteColor": {
+              "type": "string",
+              "description": "Contact's favorite color (e.g., red, blue, green)"
+            },
+            "birthday": {
+              "type": "string",
+              "description": "Birth date in DD/MM/YYYY format (e.g., 23/12/1805)"
+            }
+          },
+          "example": {
+            "firstName": "Joseph",
+            "lastName": "Smith",
+            "email": "josephsmith@celestial.being",
+            "favoriteColor": "gray",
+            "birthday": "23/12/1805"
+          }
+        },
+        "Health": {
+          "type": "object",
+          "required": [
+            "firstName",
+            "lastName",
+            "email",
+            "favoriteColor",
+            "birthday"
+          ],
+          "properties": {
+            "firstName": {
+              "type": "string",
+              "description": "Contact's first name"
+            },
+            "lastName": {
+              "type": "string",
+              "description": "Contact's last name"
+            },
+            "email": {
+              "type": "string",
+              "description": "Contact's email address"
+            },
+            "favoriteColor": {
+              "type": "string",
+              "description": "Contact's favorite color (e.g., red, blue, green)"
+            },
+            "birthday": {
+              "type": "object",
+              "description": "Birth date in DD/MM/YYYY format (e.g., 23/12/1805)"
+            }
+          },
+          "example": {
+            "firstName": "Joseph",
+            "lastName": "Smith",
+            "email": "josephsmith@celestial.being",
+            "favoriteColor": "gray",
+            "birthday": "23/12/1805"
+          }
+        }
+      }
+    }
+  },
+  "apis": ["./routes/web.js"]
+}
