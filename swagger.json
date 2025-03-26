@@ -321,80 +321,78 @@
       "schemas": {
         "Education": {
           "type": "object",
-          "required": [
-            "firstName",
-            "lastName",
-            "email",
-            "favoriteColor",
-            "birthday"
-          ],
+          "required": ["author", "title", "shortDescription", "date"],
           "properties": {
-            "firstName": {
+            "author": {
               "type": "string",
-              "description": "Contact's first name"
+              "description": "Full names of the author of the post"
             },
-            "lastName": {
+            "title": {
               "type": "string",
-              "description": "Contact's last name"
+              "description": "The title of the post"
             },
-            "email": {
+            "shortDescription": {
               "type": "string",
-              "description": "Contact's email address"
+              "description": "Contents a summarized information of the post and should contain words under 50 words."
             },
-            "favoriteColor": {
+            "imageUrl": {
               "type": "string",
-              "description": "Contact's favorite color (e.g., red, blue, green)"
+              "description": "contain a working link if there is any of the image for the post."
             },
-            "birthday": {
+            "date": {
               "type": "string",
-              "description": "Birth date in DD/MM/YYYY format (e.g., 23/12/1805)"
+              "description": "Date in DD/MM/YYYY format (e.g., 23/12/1805)"
+            },
+            "content": {
+              "type": "string",
+              "description": "A full description of the post and any relevant infornmation to be included here"
             }
           },
           "example": {
-            "firstName": "Joseph",
-            "lastName": "Smith",
-            "email": "josephsmith@celestial.being",
-            "favoriteColor": "gray",
-            "birthday": "23/12/1805"
+            "author": "Edward Kamwi",
+            "title": "Schools Introduce AI Teachers",
+            "shortDescription": "A short description about the post.",
+            "imageUrl": "http://example.com/image.jpg",
+            "date": "26/03/2025",
+            "content": "A full description of the post and any relevant infornmation to be included here"
           }
         },
         "Health": {
           "type": "object",
-          "required": [
-            "firstName",
-            "lastName",
-            "email",
-            "favoriteColor",
-            "birthday"
-          ],
+          "required": ["author", "title", "shortDescription", "date"],
           "properties": {
-            "firstName": {
+            "author": {
               "type": "string",
-              "description": "Contact's first name"
+              "description": "Full names of the author of the post"
             },
-            "lastName": {
+            "title": {
               "type": "string",
-              "description": "Contact's last name"
+              "description": "The title of the post"
             },
-            "email": {
+            "shortDescription": {
               "type": "string",
-              "description": "Contact's email address"
+              "description": "Contents a summarized information of the post and should contain words under 50 words."
             },
-            "favoriteColor": {
+            "imageUrl": {
               "type": "string",
-              "description": "Contact's favorite color (e.g., red, blue, green)"
+              "description": "contain a working link if there is any of the image for the post."
             },
-            "birthday": {
-              "type": "object",
-              "description": "Birth date in DD/MM/YYYY format (e.g., 23/12/1805)"
+            "date": {
+              "type": "string",
+              "description": "Date in DD/MM/YYYY format (e.g., 23/12/1805)"
+            },
+            "content": {
+              "type": "string",
+              "description": "A full description of the post and any relevant infornmation to be included here"
             }
           },
           "example": {
-            "firstName": "Joseph",
-            "lastName": "Smith",
-            "email": "josephsmith@celestial.being",
-            "favoriteColor": "gray",
-            "birthday": "23/12/1805"
+            "author": "Benjamin Chanda",
+            "title": "Doctors reach out for infrastructure Development",
+            "shortDescription": "A short description about the post.",
+            "imageUrl": "http://example.com/image.jpg",
+            "date": "26/03/2025",
+            "content": "A full description of the post and any relevant infornmation to be included here"
           }
         }
       }
