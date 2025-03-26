@@ -10,13 +10,16 @@ const index = async (req, res) => {
 };
 
 const show = async (req, res) => {
-  const single_health = await health.findById(req.params.id);
-  if (single_health === null) {
-    res.status(404).json("Post not found");
-  } else {
-    res.status(200).json(single_health);
+  try {
+    const single_health = await health.findById(req.params.id);
+    if (single_health === null) {
+      return res.status(404).json("Post not found");
+    } else {
+      return res.status(200).json(single_health);
+    }
+  } catch {
+    return res.status(500).json("Server Error");
   }
-  res.status(500).json("Server Error");
 };
 
 const create = async (req, res) => {
