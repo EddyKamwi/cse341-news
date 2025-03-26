@@ -10,13 +10,16 @@ const index = async (req, res) => {
 };
 
 const show = async (req, res) => {
-  const single_education = await education.findById(req.params.id);
-  if (single_education === null) {
-    res.status(404).json("Post not found");
-  } else {
-    res.status(200).json(single_education);
+  try {
+    const single_education = await education.findById(req.params.id);
+    if (single_education === null) {
+      res.status(404).json("Post not found");
+    } else {
+      res.status(200).json(single_education);
+    }
+  } catch {
+    res.status(500).json("Server Error");
   }
-  res.status(500).json("Server Error");
 };
 
 const create = async (req, res) => {
