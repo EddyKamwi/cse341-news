@@ -45,23 +45,21 @@ routes.post(
 // UPDATE
 routes.put(
   "/education/:id",
-  [
-    body("date")
-      .notEmpty()
-      .isLength(10)
-      .withMessage("Date field should be in dd/mm/yyyy format"),
-  ],
+
+  body("date")
+    .notEmpty()
+    .isLength(10)
+    .withMessage("Date field should be in dd/mm/yyyy format"),
   EducationController.update
 );
 
 routes.put(
   "/health/:id",
-  [
-    body("date")
-      .notEmpty()
-      .isLength(10)
-      .withMessage("Date field should be in dd/mm/yyyy format"),
-  ],
+
+  body("date")
+    .notEmpty()
+    .isLength(10)
+    .withMessage("Date field should be in dd/mm/yyyy format"),
   HealthController.update
 );
 
