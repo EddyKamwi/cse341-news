@@ -113,6 +113,11 @@
         "delete": {
           "summary": "Delete an Education post by ID",
           "tags": ["Education"],
+          "security": [{ "OAuth2": ["write:posts"] }],
+          "externalDocs": {
+            "description": "Login Details",
+            "url": "https://cse341-news.onrender.com/login"
+          },
           "parameters": [
             {
               "in": "path",
@@ -262,6 +267,11 @@
         "delete": {
           "summary": "Delete a Health post by ID",
           "tags": ["Health"],
+          "security": [{ "OAuth2": ["write:posts"] }],
+          "externalDocs": {
+            "description": "Login Details",
+            "url": "https://cse341-news.onrender.com/login"
+          },
           "parameters": [
             {
               "in": "path",
