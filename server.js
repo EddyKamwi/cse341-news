@@ -2,7 +2,7 @@ const passport = require("passport");
 
 async function main() {
   const express = require("express");
-  const contactRouter = require("./routes/web");
+  const appRoutes = require("./routes/web");
   const swaggerUi = require("swagger-ui-express");
   const swaggerDoc = require("swagger-jsdoc");
   const options = require("./swagger.json");
@@ -11,20 +11,20 @@ async function main() {
   const GitHubStrategy = require("passport-github").Strategy;
   const session = require("express-session");
 
-  session({
+  app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
       httpOnly: true,
       secure: false,
       maxAge: 1000 * 60 * 60 * 24, // 24 hours
      },
-  })
+  }))
 
 
-  passport.initialize();
-  passport.session();
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   passport.serializeUser(function (user, done) {
     done(null, user.id);
@@ -50,7 +50,7 @@ async function main() {
   // loading my routes
   app.use(express.json());
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
-  app.use("/", contactRouter);
+  app.use("/", appRoutes);
 
   // starting server
   app.listen(8080, () => {
