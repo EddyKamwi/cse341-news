@@ -42,7 +42,7 @@ async function main() {
       },
       function (accessToken, refreshToken, profile, cb) {
         {
-          return cb(null, user);
+          return cb(null, profile);
         }
       }
     )

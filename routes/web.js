@@ -2,7 +2,6 @@ const routes = require("express").Router();
 require("dotenv").config();
 const EducationController = require("../controllers/EducationController");
 const HealthController = require("../controllers/HealthController");
-const { body, validationResult } = require("express-validator");
 const passport = require("passport");
 const isAuth = require("../middleware/auth");
 const { validateData, validateRequired } = require("../middleware/validation");
