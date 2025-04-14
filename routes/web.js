@@ -32,6 +32,10 @@ routes.get("/education/:id", EducationController.show);
 routes.get("/health", HealthController.index);
 routes.get("/health/:id", HealthController.show);
 
+routes.get("/", (req, res) => {
+  res.json("Welcome to the API");
+});
+
 // CREATE
 routes.post("/education", validateRequired, EducationController.create);
 
@@ -43,8 +47,8 @@ routes.put("/education/:id", validateData, EducationController.update);
 routes.put("/health/:id", validateData, HealthController.update);
 
 // DELETE
-routes.delete("/education/:id",isAuth, EducationController.destroy);
+routes.delete("/education/:id", isAuth, EducationController.destroy);
 
-routes.delete("/health/:id",isAuth, HealthController.destroy);
+routes.delete("/health/:id", isAuth, HealthController.destroy);
 
 module.exports = routes;
