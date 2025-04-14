@@ -133,6 +133,9 @@
             "200": {
               "description": "Post deleted successfully"
             },
+            "401": {
+              "description": "You are not authenticated, please login first"
+            },
             "404": {
               "description": "Post not found"
             },
@@ -286,6 +289,9 @@
           "responses": {
             "200": {
               "description": "Post deleted successfully"
+            },
+            "401": {
+              "description": "You are not authenticated, please login first"
             },
             "404": {
               "description": "Post not found"

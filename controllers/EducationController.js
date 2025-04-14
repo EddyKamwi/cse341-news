@@ -36,10 +36,6 @@ const create = async (req, res) => {
   }
 
   try {
-    const err = validationResult(req);
-    if (!err.isEmpty()) {
-      return res.status(400).json({ status: "failed", errors: err.array() });
-    }
     const neweducation = req.body;
     await education
       .create(neweducation)
@@ -70,10 +66,6 @@ const update = async (req, res) => {
   }
   
   try {
-    const err = validationResult(req);
-    if (!err.isEmpty()) {
-      return res.status(400).json({ status: "failed", errors: err.array() });
-    }
     const num = await education.update(req.params.id, req.body);
     if (num === 1) {
       res.status(200).json("Post updated successfully");

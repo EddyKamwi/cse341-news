@@ -24,11 +24,11 @@ const show = async (req, res) => {
 };
 
 const create = async (req, res) => {
+  const err = validationResult(req);
+  if (!err.isEmpty()) {
+    return res.status(400).json({ status: "failed", errors: err.array() });
+  }
   try {
-    const err = validationResult(req);
-    if (!err.isEmpty()) {
-      return res.status(400).json({ status: "failed", errors: err.array() });
-    }
     const newhealth = req.body;
     await health
       .create(newhealth)
@@ -52,11 +52,11 @@ const destroy = async (req, res) => {
 };
 
 const update = async (req, res) => {
+  const err = validationResult(req);
+  if (!err.isEmpty()) {
+    return res.status(400).json({ status: "failed", errors: err.array() });
+  }
   try {
-    const err = validationResult(req);
-    if (!err.isEmpty()) {
-      return res.status(400).json({ status: "failed", errors: err.array() });
-    }
     const num = await health.update(req.params.id, req.body);
     if (num === 1) {
       res.status(200).json("Post updated successfully");
