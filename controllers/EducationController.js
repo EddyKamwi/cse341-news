@@ -2,6 +2,7 @@ const education = require("../Models/Education");
 const { validationResult } = require("express-validator");
 
 const index = async (req, res) => {
+
   try {
     const list = await education.findAll();
     if (list === null) {
@@ -28,6 +29,12 @@ const show = async (req, res) => {
 };
 
 const create = async (req, res) => {
+  // validating 
+  const err = validationResult(req);
+  if (!err.isEmpty()) {
+    return res.status(400).json({ status: "failed", errors: err.array() });
+  }
+
   try {
     const err = validationResult(req);
     if (!err.isEmpty()) {
@@ -56,6 +63,12 @@ const destroy = async (req, res) => {
 };
 
 const update = async (req, res) => {
+  // validating 
+  const err = validationResult(req);
+  if (!err.isEmpty()) {
+    return res.status(400).json({ status: "failed", errors: err.array() });
+  }
+  
   try {
     const err = validationResult(req);
     if (!err.isEmpty()) {
