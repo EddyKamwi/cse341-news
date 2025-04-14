@@ -12,14 +12,16 @@ const validateData = [
     .withMessage("Title field is required")
     .isString(),
   body("shortDescription")
-    .optional()
+    .optional().isLength({ min: 10 })
+    .withMessage("Short Description field should be at least 10 characters long")
     .notEmpty()
     .withMessage("Short Description field should not be empty")
     .isString(),
   body("date")
     .optional()
     .notEmpty()
-    .isLength(10)
+    .withMessage("Date field should not be empty")
+    .isDate({ format: "DD/MM/YYYY" })
     .withMessage("Date field should be in dd/mm/yyyy format"),
   body("content")
     .optional()
@@ -35,7 +37,14 @@ const validateRequired = [
     .withMessage("Short Description field is required"),
   body("date")
     .notEmpty()
-    .isLength(10)
-    .withMessage("Date field is required and in dd/mm/yyyy format"),
+    .withMessage("Date field is required")
+    .isDate({ format: "DD/MM/YYYY" })
+    .withMessage("Date field should be in dd/mm/yyyy format"),
+  body("imageUrl")
+    .optional()
+    .notEmpty()
+    .withMessage("Image URL field should not be empty")
+    .isURL()
+    .withMessage("Image URL field should be a valid URL"),
 ];
 module.exports = { validateData, validateRequired };
